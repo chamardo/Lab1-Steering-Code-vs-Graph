@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class SeekFleeAgent : MonoBehaviour
 {
     public GameObject target;
+    public float fleeDistance = 10f;
     public float safetyDistance = 10f;
     NavMeshAgent agent;
     Vector3 lastTargetPosition;
@@ -37,7 +38,7 @@ public class SeekFleeAgent : MonoBehaviour
     void Flee(Vector3 location)
     {
         Vector3 fleeVector = location - transform.position;
-        agent.SetDestination(transform.position -  fleeVector);
+        agent.SetDestination(transform.position -  fleeVector.normalized * fleeDistance);
     }
 
     void Pursue()
